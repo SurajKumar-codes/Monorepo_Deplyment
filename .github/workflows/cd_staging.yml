@@ -13,8 +13,10 @@ jobs:
     - name: SSH into Server
       run: |
         echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
-        mkdir .ssh
-        echo "${{ secrets.KNOWN_HOSTS }}" &> ~/.ssh/known_hosts
+        mkdir -p /home/runner/.ssh
+        ls /home/runner/.ssh
+        touch /home/runner/.ssh/known_hosts
+        echo "${{ secrets.KNOWN_HOSTS }}" &> /home/runner/.ssh/known_hosts
         ssh -i ~/ssh_key azureuser@74.225.216.162
         cd Monorepo_Deplyment/ && git pull
         pnpm install
