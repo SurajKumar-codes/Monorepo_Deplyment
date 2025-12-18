@@ -18,4 +18,4 @@ jobs:
         touch /home/runner/.ssh/known_hosts
         echo "${{ secrets.KNOWN_HOSTS }}" &> /home/runner/.ssh/known_hosts
         chmod 700 /home/runner/ssh_key
-        ssh -i ~/ssh_key azureuser@74.225.216.162 -t "cd Monorepo_Deplyment/ && git pull origin main && pnpm install && pnpm build && pm2 restart web-server && pm2 http-server && pm2 restart ws-server"
+        ssh -i ~/ssh_key azureuser@74.225.216.162 -t "cd Monorepo_Deplyment/ && git pull origin main && export PATH=/home/azureuser/.nvm/versions/node/v20.19.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && pnpm install && pnpm build && pm2 restart web-server && pm2 http-server && pm2 restart ws-server"
