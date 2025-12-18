@@ -17,6 +17,7 @@ jobs:
         ls /home/runner/.ssh
         touch /home/runner/.ssh/known_hosts
         echo "${{ secrets.KNOWN_HOSTS }}" &> /home/runner/.ssh/known_hosts
+        chmod 700 /home/runner/ssh_key
         ssh -i ~/ssh_key azureuser@74.225.216.162
         cd Monorepo_Deplyment/ && git pull
         pnpm install
