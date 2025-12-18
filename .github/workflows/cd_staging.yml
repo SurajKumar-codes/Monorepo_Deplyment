@@ -6,11 +6,12 @@ on:
 
 jobs:
   redeploy_everything:
+    runs-on: ubuntu-latest
     name: Deploying everything to the staging cluster
 
     steps:
-     - name: SSH into Server
-       run: |
+    - name: SSH into Server
+      run: |
         echo ${{ secrets.SSH_PRIVATE_KEY }} &> ~/ssh_key
         ssh -i ~/ssh_key azureuser@74.225.216.162
         cd Monorepo_Deplyment/ && git pull
