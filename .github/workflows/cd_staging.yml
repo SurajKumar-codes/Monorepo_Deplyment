@@ -18,7 +18,7 @@ jobs:
           cd Monorepo_Deplyment/ && git pull
           pnpm install
           pnpm build
-          pm2 restart fe-server
+          pm2 restart web-server
           pm2 restart http-server
           pm2 restart ws-server
         EOF
