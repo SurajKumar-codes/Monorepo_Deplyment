@@ -12,6 +12,11 @@ jobs:
     steps:
     - name: SSH into Server
       run: |
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
-        chmod 600 ~/ssh_key
-        ssh -i ~/ssh_key -o StrictHostKeyChecking=no azureuser@74.225.216.162 'bash -l -c "cd Monorepo_Deplyment/ && git pull && pnpm install && pnpm build && pm2 restart web-server && pm2 restart http-server && pm2 restart ws-server"'
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+        ssh -i ~/ssh_key azureuser@74.225.216.162
+        cd Monorepo_Deplyment/ && git pull
+        pnpm install
+        pnpm build
+        pm2 restart web-server
+        pm2 restart http-server
+        pm2 restart ws-server
